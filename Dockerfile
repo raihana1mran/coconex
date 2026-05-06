@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd curl json intl zip
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -24,14 +24,18 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Set working directory
 WORKDIR /var/www/html
 
-# Copy project files
+# Copy project files (exclude .env for security)
 COPY . .
+RUN rm -f .env
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Create storage and cache directories BEFORE composer install
+RUN mkdir -p storage/framework/{cache,sessions,views} storage/logs bootstrap/cache && \
+    chown -R www-data:www-data storage bootstrap/cache
 
-# Set permissions
-RUN chown -R www-data:www-data storage bootstrap/cache
+# Install dependencies without running post-install scripts
+RUN COMPOSER_MEMORY_LIMIT=-1 composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+
+
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite

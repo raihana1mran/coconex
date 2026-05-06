@@ -15,7 +15,8 @@ services:
     name: coconex
     region: singapore
     buildCommand: |
-      composer install --no-dev --optimize-autoloader
+      composer install --optimize-autoloader
+      php artisan package:discover --ansi || true
       php artisan migrate --force
       php artisan config:cache
       php artisan route:cache

@@ -630,8 +630,10 @@ function addToCart(productId, productName, productPrice, productImage) {
     });
     
     function filterProducts(category) {
+        var buttons = document.querySelectorAll('.filter-btn');
+        var cards = document.querySelectorAll('.product-card');
         
-        buttons.forEach(btn => {
+        buttons.forEach(function(btn) {
             if (btn.dataset.filter === category) {
                 btn.classList.add('bg-primary-container', 'text-white');
                 btn.classList.remove('bg-gray-100', 'text-gray-600');
@@ -641,14 +643,11 @@ function addToCart(productId, productName, productPrice, productImage) {
             }
         });
         
-        cards.forEach(card => {
+        cards.forEach(function(card) {
             if (category === 'all' || card.dataset.category === category) {
                 card.style.display = 'block';
-                gsap.to(card, { opacity: 1, duration: 0.3 });
             } else {
-                gsap.to(card, { opacity: 0, duration: 0.3, onComplete: () => {
-                    card.style.display = 'none';
-                }});
+                card.style.display = 'none';
             }
         });
     }
