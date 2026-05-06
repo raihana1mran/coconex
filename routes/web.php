@@ -10,8 +10,10 @@ use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Cookie;
 
-function isCmsAuthenticated() {
-    return Cookie::get('cms_auth') === 'authenticated';
+if (!function_exists('isCmsAuthenticated')) {
+    function isCmsAuthenticated() {
+        return Cookie::get('cms_auth') === 'authenticated';
+    }
 }
 
 Route::get('/', [ProductController::class, 'index']);
