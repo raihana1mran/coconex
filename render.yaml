@@ -1,0 +1,33 @@
+# Free Hosting Options for Laravel
+
+## Option 1: Render.com (Recommended Free)
+# Free tier: https://render.com
+# - Sleeps after 15 min inactivity (but wakes up on request)
+# - No credit card needed for free tier
+# 
+# Steps:
+# 1. Push code to GitHub
+# 2. Connect GitHub to Render
+# 3. Use "Web Service" with PHP
+
+services:
+  - type: web
+    name: coconex
+    region: singapore
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan migrate --force
+      php artisan config:cache
+      php artisan route:cache
+    startCommand: php artisan serve --host=0.0.0.0 --port=$PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_KEY
+        generateValue: true
+      - key: DB_CONNECTION
+        value: sqlite
+      - key: DB_DATABASE
+        value: /tmp/db/database.sqlite

@@ -1,0 +1,173 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --font-plus-jakarta-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui;
+    --font-be-vietnam-pro: 'Be Vietnam Pro', ui-sans-serif, system-ui;
+
+    --color-primary: #9b4500;
+    --color-on-primary: #ffffff;
+    --color-primary-container: #ff7e21;
+    --color-on-primary-container: #602900;
+    --color-primary-fixed: #ffdbc9;
+    --color-primary-fixed-dim: #ffb68d;
+    --color-on-primary-fixed: #331200;
+    --color-on-primary-fixed-variant: #763300;
+
+    --color-secondary: #476800;
+    --color-on-secondary: #ffffff;
+    --color-secondary-container: #b3f733;
+    --color-on-secondary-container: #4c6f00;
+    --color-secondary-fixed: #b3f733;
+    --color-secondary-fixed-dim: #9ac51b;
+    --color-on-secondary-fixed: #131f00;
+    --color-on-secondary-fixed-variant: #354e00;
+
+    --color-tertiary: #b80068;
+    --color-on-tertiary: #ffffff;
+    --color-tertiary-container: #ff72ab;
+    --color-on-tertiary-container: #73003f;
+    --color-tertiary-fixed: #ffd9e3;
+    --color-tertiary-fixed-dim: #ffb0cb;
+    --color-on-tertiary-fixed: #3e001f;
+    --color-on-tertiary-fixed-variant: #8d004f;
+
+    --color-error: #ba1a1a;
+    --color-on-error: #ffffff;
+    --color-error-container: #ffdad6;
+    --color-on-error-container: #93000a;
+
+    --color-background: #f9f9fc;
+    --color-on-background: #1a1c1e;
+    --color-surface: #f9f9fc;
+    --color-on-surface: #1a1c1e;
+    --color-surface-variant: #e2e2e5;
+    --color-on-surface-variant: #47473f;
+    --color-surface-container: #eeeef0;
+    --color-surface-container-high: #e8e8ea;
+    --color-surface-container-highest: #e2e2e5;
+    --color-surface-container-low: #f3f3f6;
+    --color-surface-container-lowest: #ffffff;
+    --color-surface-dim: #dadadc;
+    --color-surface-bright: #f9f9fc;
+    --color-surface-tint: #9b4500;
+
+    --color-outline: #8b7264;
+    --color-outline-variant: #dfc0b1;
+
+    --color-inverse-surface: #2f3133;
+    --color-inverse-on-surface: #f0f0f3;
+    --color-inverse-primary: #ffb68d;
+
+    --radius DEFAULT: 0.25rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --radius-full: 9999px;
+
+    --spacing-gutter: 16px;
+    --spacing-stack-lg: 32px;
+    --spacing-stack-md: 16px;
+    --spacing-container-padding: 24px;
+    --spacing-unit: 8px;
+    --spacing-stack-sm: 8px;
+}
+
+@layer base {
+    body {
+        @apply font-sans text-on-background bg-background min-h-screen;
+        min-height: max(884px, 100dvh);
+    }
+}
+
+@layer components {
+    .glass-card {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .sunrise-gradient {
+        background: linear-gradient(135deg, #ff7e21 0%, #ffb68d 100%);
+    }
+
+    .zest-gradient {
+        background: linear-gradient(135deg, #9b4500 0%, #ff7e21 100%);
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+
+@layer utilities {
+    .font-h1 {
+        font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui;
+    }
+
+    .font-h2 {
+        font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui;
+    }
+
+    .font-h3 {
+        font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui;
+    }
+
+    .font-body-lg {
+        font-family: 'Be Vietnam Pro', ui-sans-serif, system-ui;
+    }
+
+    .font-body-md {
+        font-family: 'Be Vietnam Pro', ui-sans-serif, system-ui;
+    }
+
+    .font-label-bold {
+        font-family: 'Be Vietnam Pro', ui-sans-serif, system-ui;
+    }
+
+    .text-h1 {
+        font-size: 48px;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+    }
+
+    .text-h2 {
+        font-size: 32px;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        font-weight: 700;
+    }
+
+    .text-h3 {
+        font-size: 24px;
+        line-height: 1.3;
+        letter-spacing: 0em;
+        font-weight: 700;
+    }
+
+    .text-body-lg {
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .text-body-md {
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .text-label-bold {
+        font-size: 14px;
+        line-height: 1.2;
+        font-weight: 600;
+    }
+}

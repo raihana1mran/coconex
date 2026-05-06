@@ -1,0 +1,31 @@
+name: coconex
+id: 1
+runtime: php-82
+region: ap-south-1
+
+build:
+  - composer install --no-dev --optimize-autoloader
+  - npm install && npm run build
+  - php artisan migrate --force
+
+asset:
+  - /public/build
+  - /storage/app/public/products
+
+schedule:
+  - command: "artisan queue:work --once"
+    frequency: everyFiveMinutes
+
+# Database configuration
+# Set in Vapor Dashboard:
+#   - Create MySQL database
+#   - Configure DB credentials in Vapor env
+
+environment:
+  APP_ENV: production
+  APP_DEBUG: "false"
+  LOG_CHANNEL: stderr
+  SESSION_DRIVER: database
+  QUEUE_CONNECTION: database
+  CACHE_STORE: database
+  MAIL_MAILER: smtp
