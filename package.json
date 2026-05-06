@@ -15,3 +15,7 @@
         "vite": "^7.0.7"
     }
 }
+"scripts": {
+  "build": "vite build",
+  "dev": "vite"
+}
