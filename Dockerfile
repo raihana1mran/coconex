@@ -19,8 +19,10 @@ RUN apt-get update && apt-get install -y \
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath gd intl zip
+# Install PHP extensions one by one to identify failures
+RUN docker-php-ext-install pdo_mysql pdo_sqlite mbstring exif pcntl bcmath
+RUN docker-php-ext-install gd
+RUN docker-php-ext-install intl zip
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
